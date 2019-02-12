@@ -4,11 +4,16 @@
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
-
+let weirdX = 0;
+let weirdY = 0;
+let wonkyX; 
+let wonkyY;
 
 function setup() {
-  createCanvas(900, 900);
+  createCanvas(windowWidth, windowHeight);
   background(0,0,255);
+  wonkyX = windowWidth;
+  wonkyY = windowHeight;
 }
 
 function keyTyped() {
@@ -24,11 +29,22 @@ function keyTyped() {
   if (mouseIsPressed){
     fill(random(0,255), random(0,255), random(0,255));
   }
+  if (key === " "){
+    background(0,0,255);
+    textFont("Times New Roman");
+    text("Evan Ewen", 12, 30);
+  }
 }
+
 
 
 function draw() {
   textFont("Times New Roman");
   text("Evan Ewen", 12, 30);
-  triangle(windowHeight-1, )
+  weirdX += 10;
+  weirdY += 20;
+  wonkyX -= 10;
+  wonkyY -= 10;
+  triangle(windowWidth/2, windowHeight/2, weirdX, weirdY, wonkyX, wonkyY);
+  print(weirdX, weirdY, wonkyX, wonkyY);
 }
