@@ -30,4 +30,5 @@ function keyTyped() {
 function draw() {
   textFont("Times New Roman");
   text("Evan Ewen", 12, 30);
+  triangle(windowHeight-1, )
 }
