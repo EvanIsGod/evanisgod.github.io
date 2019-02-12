@@ -12,8 +12,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   x = windowWidth / 2;
   y = windowHeight / 2;
-  xSpeed = random(-5, 5);
-  ySpeed = random(-5, 5);
+  xSpeed = random(50, 100);
+  ySpeed = random(50, 100);
   background(0);
 }
 
@@ -29,9 +29,9 @@ function draw() {
   if (y < 0 || y > windowHeight){
     ySpeed *= -1;
   }
-}
-
-function mousePressed(){
-  xSpeed = random(-3, 3);
-  ySpeed = random(-5, 5);
+  if (keyIsPressed) {
+    if (key === "r") {
+      background(0);
+    }
+  }
 }
