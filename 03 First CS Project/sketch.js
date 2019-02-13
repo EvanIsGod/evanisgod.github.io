@@ -39,8 +39,8 @@ function keyTyped() {
 
 
 function draw() {
-  textFont("Times New Roman");
-  text("Evan Ewen", 12, 30);
+  textFont("Comic Sans");
+  text("Evan Ewen", 100, 100);
   weirdX += 10;
   weirdY += 20;
   wonkyX -= 10;
