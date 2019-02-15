@@ -4,6 +4,8 @@ let y  = 200;
 let rSize = 100;
 let pickedUp = false;
 let mouseOver = false;
+let diffX = 0;
+let diffY = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -19,8 +21,8 @@ function draw() {
     mouseOver = true;
   }
   if (pickedUp){
-    x = mouseX;
-    y = mouseY;
+    x = mouseX - diffX;
+    y = mouseY - diffY;
   }
   rect(x,y,rSize,rSize);
 }
@@ -28,6 +30,8 @@ function draw() {
 function mousePressed() {
   if (mouseOver === true){
     pickedUp = true;
+    diffX = mouseX - x;
+    diffY = mouseY - y;
   }
 }
 
