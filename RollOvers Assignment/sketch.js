@@ -7,14 +7,16 @@
 
 let rectSize;
 let rectX, rectY;
+let fadeColour;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255);
-  rectSize = 100;
-  rectX = windowWidth/4;
-  rectY = windowHeight/4;
+  rectSize = (500,500);
+  rectX = windowWidth/6;
+  rectY = windowHeight/6;
+  fadeColour = (0,50,90);
 }
 
 function draw() {
@@ -24,30 +26,56 @@ function draw() {
   rect(rectX+rectSize,rectY, rectSize,rectSize);
   rect(rectX,rectY+rectSize, rectSize,rectSize);
   mouseOver();
+  changeAll();
+}
+
+function square1() {
+  if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
+    fill(fadeColour);
+    rect(rectX,rectY, rectSize,rectSize);
+    fill(255);
+    fadeColour += constrain(1,1,1);
+  }
+}
+
+function square2() {
+  if (mouseX >= rectX+rectSize && mouseX <= rectX+rectSize*2 && mouseY >= rectY+rectSize && mouseY <= rectY+rectSize*2){
+    fill(fadeColour);
+    rect(rectX+rectSize,rectY+rectSize, rectSize,rectSize);
+    fill(255);
+    fadeColour += constrain(1,1,1);
+  }
+}
+
+function square3() {
+  if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY+rectSize && mouseY <= rectY+rectSize+rectSize){
+    fill(fadeColour);
+    rect(rectX,rectY+rectSize, rectSize,rectSize);
+    fill(255);
+    fadeColour += constrain(1,1,1);
+  }
+}
+
+function square4() {
+  if (mouseX >= rectX+rectSize && mouseX <= rectX+rectSize+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
+    fill(fadeColour);
+    rect(rectX+rectSize,rectY, rectSize,rectSize);
+    fill(255);
+    fadeColour += constrain(1,1,1);
+  }
+}
+
+function changeAll(){
+  if (mouseIsPressed) {
+    fill(0);
+    fadeColour = (0,0,0);
+  }
 }
 
 function mouseOver(){
-  if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
-    fill(255,0,0);
-    rect(rectX,rectY, rectSize,rectSize);
-    fill(255);
-  }
-  else if (mouseX >= rectX+rectSize && mouseX <= rectX+rectSize*2 && mouseY >= rectY+rectSize && mouseY <= rectY+rectSize*2){
-    fill(255,0,255);
-    rect(rectX+rectSize,rectY+rectSize, rectSize,rectSize);
-    fill(255);
-  }
-  else if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY+rectSize && mouseY <= rectY+rectSize+rectSize){
-    fill(0,255,0);
-    rect(rectX,rectY+rectSize, rectSize,rectSize);
-    fill(255);
-  }
-  else if (mouseX >= rectX+rectSize && mouseX <= rectX+rectSize+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
-    fill(120,0,60);
-    rect(rectX+rectSize,rectY, rectSize,rectSize);
-    fill(255);
-  }
-  else{
-    fill(255);
-  }
+  square1();
+  square2();
+  square3();
+  square4();
+  fill(255);
 }
