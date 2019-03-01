@@ -1,13 +1,7 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
 
 let rectSize;
 let rectX, rectY;
-let fadeColour;
+let fadeColour, fadeColour2, fadeColour3, fadeColour4;
 
 
 function setup() {
@@ -17,77 +11,55 @@ function setup() {
   rectX = windowWidth/6;
   rectY = windowHeight/6;
   fadeColour = (255,255,255);
+  fadeColour2 = (255,0,0);
+  fadeColour3 = (0,255,0);
+  fadeColour4 = (0,0,255);
 }
 
 function draw() {
   stroke(0);
-  rect(rectX,rectY,rectSize,rectSize);
-  rect(rectX+rectSize,rectY+rectSize, rectSize,rectSize);
-  rect(rectX+rectSize,rectY, rectSize,rectSize);
-  rect(rectX,rectY+rectSize, rectSize,rectSize);
+  
   mouseOver();
-  fadeColour -= constrain(1,1,1);
-}
+  fill(fadeColour);
+  rect(rectX,rectY,rectSize,rectSize);
+  fill(fadeColour2);
+  rect(rectX+rectSize,rectY+rectSize, rectSize,rectSize);
 
-function square1() {
-  for (let i = 0; i < 256; i++){
-    fill(fadeColour);
-    rect(rectX,rectY, rectSize,rectSize);
-    if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
-      fill(0);
-    }
-    changeAll();
-  }
-}
+  rect(rectX+rectSize,rectY, rectSize,rectSize);
 
-function square2() {
-  for (let i = 0; i < 256; i++){
-    fill(fadeColour);
-    rect(rectX+rectSize,rectY+rectSize, rectSize,rectSize);
-    if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
-      fill(0);
-    }
-  }
-  changeAll();
-}
-
-function square3() {
-  for (let i = 0; i < 256; i++){
-    fill(fadeColour);
-    rect(rectX,rectY+rectSize, rectSize,rectSize);
-    if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
-      fill(0);
-    }
-  }
-  changeAll();
-}
-
-function square4() {
-  for (let i = 0; i < 256; i++){
-    fill(fadeColour);
-    rect(rectX+rectSize,rectY, rectSize,rectSize);
-    if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
-      fill(0);
-    }
-  }
-  changeAll();
-}
-
-function changeAll(){
-  if (mouseIsPressed) {
-    fill(0);
+  rect(rectX,rectY+rectSize, rectSize,rectSize);
+ 
+  fadeColour -= (1,1,1);
+  if (mouseIsPressed){
     fadeColour = (255,255,255);
   }
 }
 
 function mouseOver(){
-  square1();
-  square2();
-  square3();
-  square4();
-  fill(255);
+  if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
+    fadeColour -= (1,1,1);
+    //rect(rectX,rectY, rectSize,rectSize);
+    print("on");
+    mouseMoved();
+  }
+  else if (mouseX >= rectX+rectSize && mouseX <= rectX+rectSize*2 && mouseY >= rectY+rectSize && mouseY <= rectY+rectSize*2){
+    fill(255,0,255);
+    rect(rectX+rectSize,rectY+rectSize, rectSize,rectSize);
+  }
+  else if (mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY+rectSize && mouseY <= rectY+rectSize+rectSize){
+    fill(0,255,0);
+    rect(rectX,rectY+rectSize, rectSize,rectSize);
+  }
+  else if (mouseX >= rectX+rectSize && mouseX <= rectX+rectSize+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize){
+    fill(120,0,60);
+    rect(rectX+rectSize,rectY, rectSize,rectSize);
+  }
 }
 
 function mouseMoved(){
-  return true;
+  if ((mouseX >= rectX && mouseX <= rectX+rectSize && mouseY >= rectY && mouseY <= rectY+rectSize) === false){
+    fill(fadeColour);
+    rect(rectX,rectY, rectSize,rectSize);
+    print("gone");
+  }
 }
