@@ -1,19 +1,35 @@
-let yOff = 0;
+// Source Code Built Off Of:
+// Daniel Shiffman
+// http://codingtra.in
+// http://patreon.com/codingtrain
+// Code for: https://youtu.be/y7sgcFhk6ZM
+
+let inc = 0.01;
+let start = 0;
+let highest = height;
+let highestX = 0;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(0);
-  fill(255);
-  rectMode(CENTER);
-  noLoop();
 }
 
 function draw() {
-  let f = map(noise(yOff),0,1,0,height*2);
-  for (let i = 0; i < width; i += 5) {
-    rect(i, height, 5, f);
-    rect(i, height, 5, f);
-    fill(random(0,255),random(0,255),random(0,255));
-    yOff += 0.01;
+  background(0);
+  let xoff = start;
+  for (let x = 0; x < width; x++) {
+    stroke(255);
+    let currHeight = noise(xoff) * height;
+    rect(x, currHeight, 1, height);
+
+    xoff += inc;
+    fill(random(255), random(255), random(255));
+    }
+
+  start += inc;
+  }
+function drawFlag(){
+  if (currHeight > height/3){
+    line(x,currHeight, x, currHeight+10);
+    triangle(x, currHeight, x+5, currHeight+5, x +5, currHeight);
   }
 }
-
