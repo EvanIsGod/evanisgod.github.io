@@ -16,20 +16,25 @@ function setup() {
 function draw() {
   background(0);
   let xoff = start;
+  let xoff2 = start * 2;
   for (let x = 0; x < width; x++) {
     stroke(255);
     let currHeight = noise(xoff) * height;
     rect(x, currHeight, 1, height);
 
     xoff += inc;
-    fill(random(255), random(255), random(255));
-    }
+  }
+  for (let x = 0; x < width; x++) {
+    stroke(random(255), random(255), random(225));
+    let currHeight = noise(xoff2) * height;
+    rect(x, currHeight, 1, height);
 
+    xoff += inc;
+  }
+  
   start += inc;
-  }
-function drawFlag(){
-  if (currHeight > height/3){
-    line(x,currHeight, x, currHeight+10);
-    triangle(x, currHeight, x+5, currHeight+5, x +5, currHeight);
-  }
+}
+
+function drawFlag() {
+
 }
