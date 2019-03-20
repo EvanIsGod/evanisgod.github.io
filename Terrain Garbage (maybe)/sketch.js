@@ -24,13 +24,6 @@ function draw() {
 
     xoff += inc;
   }
-  for (let x = 0; x < width; x++) {
-    stroke(random(255), random(255), random(225));
-    let currHeight = noise(xoff2) * height;
-    rect(x, currHeight, 1, height);
-
-    xoff += inc;
-  }
   
   start += inc;
 }
