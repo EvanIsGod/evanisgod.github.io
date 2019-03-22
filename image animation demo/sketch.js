@@ -1,28 +1,73 @@
 
-let direction = 1;
-let pinImages = [];
+let walkingFrames = [];
+let walkingFrames2 = [];
 let counter = 0;
-let speed = 1;
+let counter2 = 0;
+let xMove = 150;
+let yMove = 250;
+let xSpeed = 10;
+let ySpeed = 10;
+let spriteWidth = 100;
 
 function preload(){
-  for (let i = 0; i < 9; i++){
-    pinImages.push(loadImage("assets/tile000.png"));
-    pinImages.push(loadImage("assets/tile002.png"));
-    pinImages.push(loadImage("assets/tile004.png"));
-    pinImages.push(loadImage("assets/tile006.png"));
-    pinImages.push(loadImage("assets/tile052.png"));
+  for (let i = 0; i < 3; i++){
+    walkingFrames.push(loadImage("assets/frame-1.png"));
+    walkingFrames.push(loadImage("assets/frame-2.png"));
+    walkingFrames.push(loadImage("assets/frame-1flip.png"));
+    walkingFrames.push(loadImage("assets/frame-2flip.png"));
+    walkingFrames2.push(loadImage("assets/frame-1.png"));
+    walkingFrames2.push(loadImage("assets/frame-2.png"));
+    walkingFrames2.push(loadImage("assets/frame-1flip.png"));
+    walkingFrames2.push(loadImage("assets/frame-2flip.png"));
   }
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  frameRate(30);
 }
 
 function draw() {
+  let xEnemy = map(noise,0,1,0,900);
+  let yEnemy = map(noise,0,1,0,900);
   background(220);
-  image(pinImages[counter],width/2,height/2,100,100);
-  if (key === "RIGHT"){
-    counter = 2;
+  image(walkingFrames[counter],xMove,yMove,spriteWidth,100);
+  image(walkingFrames2[counter2], noise(xEnemy), noise(yEnemy), spriteWidth,100);
+  movement();
+  counter2 ++;
+}
+
+function movement() {
+  if (key === "ArrowRight"){
+    counter ++;
+    xMove += xSpeed;
+    if (counter > 3) {
+      counter = 2;
+    }
   }
-  
+  if (key === "ArrowLeft"){
+    counter ++;
+    xMove -= xSpeed;
+    if (counter > 1){
+      counter = 0;
+    }
+  }
+  if (key === "ArrowUp"){
+    counter += 1;
+    yMove -= ySpeed;
+    if (counter > 1){
+      counter = 0;
+    }
+  }
+  if (key === "ArrowDown"){
+    counter += 1;
+    yMove += ySpeed;
+    if (counter > 3) {
+      counter = 2;
+    }
+  }
+  if (xMove > width || xMove < 0 || yMove > height || yMove < 0){
+    xMove = 150;
+    yMove = 250;
+  }
 }
