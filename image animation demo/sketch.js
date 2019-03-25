@@ -7,7 +7,8 @@ let xMove = 150;
 let yMove = 250;
 let xSpeed = 10;
 let ySpeed = 10;
-let spriteWidth = 100;
+let xOff = 0;
+let yOff = 0;
 
 function preload(){
   for (let i = 0; i < 3; i++){
@@ -28,13 +29,18 @@ function setup() {
 }
 
 function draw() {
-  let xEnemy = map(noise,0,1,0,900);
-  let yEnemy = map(noise,0,1,0,900);
-  background(220);
-  image(walkingFrames[counter],xMove,yMove,spriteWidth,100);
-  image(walkingFrames2[counter2], noise(xEnemy), noise(yEnemy), spriteWidth,100);
+  let xEnemy = map(noise(xOff),0,1,0,width);
+  let yEnemy = map(noise(yOff),0,1,0,height);
+  //background(220);
+  image(walkingFrames[counter],xMove,yMove,100,100);
+  image(walkingFrames2[counter2], xEnemy, yEnemy, 100,100);
   movement();
   counter2 ++;
+  if (counter2 > 4){
+    counter2 = 0;
+  }
+  xOff += 0.01;
+  yOff += 0.01;
 }
 
 function movement() {
