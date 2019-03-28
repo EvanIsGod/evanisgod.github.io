@@ -3,12 +3,12 @@ let walkingFrames = [];
 let walkingFrames2 = [];
 let counter = 0;
 let counter2 = 0;
-let xMove = 150;
+let xMove = 250;
 let yMove = 250;
-let xSpeed = 10;
-let ySpeed = 10;
+let xSpeed = 15;
+let ySpeed = 15;
 let xOff = 0;
-let yOff = 0;
+let yOff = 120;
 
 function preload(){
   for (let i = 0; i < 3; i++){
@@ -25,13 +25,14 @@ function preload(){
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  textSize(90);
   frameRate(30);
 }
 
 function draw() {
   let xEnemy = map(noise(xOff),0,1,0,width);
   let yEnemy = map(noise(yOff),0,1,0,height);
-  //background(220);
+  background(220);
   image(walkingFrames[counter],xMove,yMove,100,100);
   image(walkingFrames2[counter2], xEnemy, yEnemy, 100,100);
   movement();
@@ -39,8 +40,8 @@ function draw() {
   if (counter2 > 4){
     counter2 = 0;
   }
-  xOff += 0.01;
-  yOff += 0.01;
+  xOff += 0.04;
+  yOff += 0.04;
 }
 
 function movement() {
